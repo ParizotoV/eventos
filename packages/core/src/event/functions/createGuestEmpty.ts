@@ -1,4 +1,4 @@
-import { Id } from "@/core/shared";
+import { Id } from "../../shared";
 import type Guest from "../model/Guest";
 
 export default function createGuestEmpty(): Partial<Guest> {

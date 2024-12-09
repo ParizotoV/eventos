@@ -1,4 +1,4 @@
-import type { Event } from "@/core";
+import type { Event } from "core";
 import QRCode from "react-qr-code";
 
 export interface AccessWithQrCodeProps {

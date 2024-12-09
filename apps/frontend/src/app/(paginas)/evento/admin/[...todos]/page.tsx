@@ -1,7 +1,7 @@
 "use client";
 import DashboardEvent from "@/components/event/DashboardEvent";
 import FormPasswordEvent from "@/components/event/FormPasswordEvent";
-import { Event, events, type Guest } from "@/core";
+import { Event, events, type Guest } from "core";
 import { use, useEffect, useState } from "react";
 
 export default function PageAdminEvent(props: any) {
@@ -15,9 +15,10 @@ export default function PageAdminEvent(props: any) {
 
   const confirmed = event?.guests.filter((guest) => guest.confirmed);
   const away = event?.guests.filter((guest) => !guest.confirmed);
-  const totalGeral = confirmed?.reduce((total: number, guest: Guest) => {
-    return total + guest.qtyCompanions + 1;
-  }, 0) ?? 0;
+  const totalGeral =
+    confirmed?.reduce((total: number, guest: Guest) => {
+      return total + guest.qtyCompanions + 1;
+    }, 0) ?? 0;
 
   function loadEvent() {
     const event = events.find(
