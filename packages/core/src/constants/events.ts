@@ -1,8 +1,9 @@
+import { v4 as uuid } from "uuid";
 import { Event } from "../event";
 
 const eventos: Event[] = [
   {
-    id: "xdlhnq5lwm-esmllp6nie-hzgl0ajulz7",
+    id: uuid(),
     alias: "evento-fullstack",
     password: "senha123",
     name: "Evento de Desenvolvimento Fullstack",
@@ -17,7 +18,7 @@ const eventos: Event[] = [
     expectedAudience: 200,
     guests: [
       {
-        id: "h1g2x30pglq-2qy7mc3nd8h-qq494djtbcq",
+        id: uuid(),
         name: "Alice Silva",
         email: "alice@example.com",
         confirmed: true,
@@ -25,7 +26,7 @@ const eventos: Event[] = [
         qtyCompanions: 1,
       },
       {
-        id: "unzgczdy0gp-uqljtf756de-ibfnezyz5f",
+        id: uuid(),
         name: "Carlos Pereira",
         email: "carlos@example.com",
         confirmed: false,
@@ -33,7 +34,7 @@ const eventos: Event[] = [
         qtyCompanions: 0,
       },
       {
-        id: "hqzmy1wi9gl-rgmibulirh-1k2twwu6waj",
+        id: uuid(),
         name: "Beatriz Lima",
         email: "beatriz@example.com",
         confirmed: true,
@@ -43,7 +44,7 @@ const eventos: Event[] = [
     ],
   },
   {
-    id: "2kis8yvhcvv-8um289gg1x5-zw08j0ciytk",
+    id: uuid(),
     alias: "evento-js-avancado",
     password: "js2024",
     name: "Workshop Avançado de JavaScript",
@@ -57,7 +58,7 @@ const eventos: Event[] = [
     expectedAudience: 100,
     guests: [
       {
-        id: "epy7dvzdn-h5ffojxd8xf-4u3dbflvkcs",
+        id: uuid(),
         name: "Eduardo Santos",
         email: "eduardo@example.com",
         confirmed: true,
@@ -65,7 +66,7 @@ const eventos: Event[] = [
         qtyCompanions: 0,
       },
       {
-        id: "q5pb671a0e-3a1txyighat-sbu67d47s8",
+        id: uuid(),
         name: "Fernanda Costa",
         email: "fernanda@example.com",
         confirmed: true,
@@ -75,7 +76,7 @@ const eventos: Event[] = [
     ],
   },
   {
-    id: "5nef2v2sxhl-80hjydv7qd5-fddre4x4oyr",
+    id: uuid(),
     alias: "evento-dev-frontend",
     password: "front123",
     name: "Bootcamp de Desenvolvimento Frontend",
@@ -89,7 +90,7 @@ const eventos: Event[] = [
     expectedAudience: 150,
     guests: [
       {
-        id: "8tpp19ouoqi-6nm51io1n5a-lw6itbwufu",
+        id:  uuid(),
         name: "Gabriela Rocha",
         email: "gabriela@example.com",
         confirmed: true,
@@ -97,7 +98,7 @@ const eventos: Event[] = [
         qtyCompanions: 1,
       },
       {
-        id: "a22ufkd5y2-6quz4dv5wln-qbbzwq551zs",
+        id:  uuid(),
         name: "Hugo Nogueira",
         email: "hugo@example.com",
         confirmed: false,
@@ -105,7 +106,7 @@ const eventos: Event[] = [
         qtyCompanions: 0,
       },
       {
-        id: "cyy99oylu4w-s6c387plg5k-uyieywntrh",
+        id: uuid(),
         name: "Isabela Martins",
         email: "isabela@example.com",
         confirmed: true,
@@ -115,7 +116,7 @@ const eventos: Event[] = [
     ],
   },
   {
-    id: "oz9uvdydcd-nql21g818sa-dwvqulair8l",
+    id:  uuid(),
     alias: "casamento-alberto-marina",
     password: "casamento2024",
     name: "Casamento do Alberto e Marina",
@@ -130,7 +131,7 @@ const eventos: Event[] = [
     expectedAudience: 150,
     guests: [
       {
-        id: "6odwyyikpiu-4rm8d4upd7a-2ve4yb8dq2",
+        id:  uuid(),
         name: "Bruno Cardoso",
         email: "bruno@example.com",
         confirmed: true,
@@ -138,7 +139,7 @@ const eventos: Event[] = [
         qtyCompanions: 1,
       },
       {
-        id: "eg7lxxznuva-d4cnx48ijqt-iz6xznoo5ts",
+        id:  uuid(),
         name: "Carla Mendes",
         email: "carla@example.com",
         confirmed: true,
@@ -148,7 +149,7 @@ const eventos: Event[] = [
     ],
   },
   {
-    id: "muowo4f7k89-b93nq8qxqqd-0noa74ohiw9",
+    id:  uuid(),
     alias: "aniversario-joao",
     password: "joao2024",
     name: "Aniversário do João - 30 Anos",
@@ -163,7 +164,7 @@ const eventos: Event[] = [
     expectedAudience: 80,
     guests: [
       {
-        id: "ir1r1ucu2od-461dkhc72tm-ydo4met07uj",
+        id:  uuid(),
         name: "Maria Souza",
         email: "maria@example.com",
         confirmed: true,
@@ -171,7 +172,7 @@ const eventos: Event[] = [
         qtyCompanions: 2,
       },
       {
-        id: "95qacnirxwr-ffuhv3s0nd9-nsu3rl4djee",
+        id:  uuid(),
         name: "José Almeida",
         email: "jose@example.com",
         confirmed: false,
@@ -181,7 +182,7 @@ const eventos: Event[] = [
     ],
   },
   {
-    id: "81ks0oozc35-ljvo5a8rqzg-qt28hdn6vge",
+    id:  uuid(),
     alias: "inauguracao-loja-estrela",
     password: "estrela2024",
     name: "Inauguração da Loja Estrela",
@@ -196,7 +197,7 @@ const eventos: Event[] = [
     expectedAudience: 300,
     guests: [
       {
-        id: "c1a5x0qgus-cfswa77ods5-z4nn6bezylp",
+        id:  uuid(),
         name: "Cláudia Lima",
         email: "claudia@example.com",
         confirmed: true,
@@ -204,7 +205,7 @@ const eventos: Event[] = [
         qtyCompanions: 3,
       },
       {
-        id: "npsgd64c31a-c30fsot6cpk-sbsuwwahdda",
+        id:  uuid(),
         name: "Ricardo Barbosa",
         email: "ricardo@example.com",
         confirmed: true,
@@ -214,7 +215,7 @@ const eventos: Event[] = [
     ],
   },
   {
-    id: "i3sg2jyquog-vnku4n38v4-6dibxujxr56",
+    id:  uuid(),
     alias: "reuniao-familia-oliveira",
     password: "familia2024",
     name: "Reunião da Família Oliveira",
@@ -228,7 +229,7 @@ const eventos: Event[] = [
     expectedAudience: 50,
     guests: [
       {
-        id: "oqsjw6lyayh-q9b8sxtkvu-9cmebgi34ru",
+        id:  uuid(),
         name: "Thiago Oliveira",
         email: "thiago@example.com",
         confirmed: true,
@@ -236,7 +237,7 @@ const eventos: Event[] = [
         qtyCompanions: 4,
       },
       {
-        id: "1wrml69nqd7-re2ywt674ic-vw5dbfxoj4q",
+        id:  uuid(),
         name: "Letícia Oliveira",
         email: "leticia@example.com",
         confirmed: true,
