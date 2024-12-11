@@ -1,12 +1,22 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { Date, Event, Id } from 'core';
+import { Date, Event, Id, type Guest } from 'core';
 import { EventsService } from './events.service';
 
 @Controller('events')
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
-  @Post('/access')
+  @Post()
+  async createEvent(@Body() event: Event) {
+    return await this.eventsService.createEvent(event);
+  }
+
+  @Post(':alias/guest')
+  async addGuest(@Param('alias') alias: string, @Body() guest: Guest) {
+    return await this.eventsService.addGuest(alias, guest);
+  }
+
+  @Post('access')
   async accessEvent(@Body() datas: { id: string; password: string }) {
     return await this.eventsService.accessEvent(datas.id, datas.password);
   }
@@ -27,8 +37,6 @@ export class EventsController {
 
   @Get('validate/:alias/:id')
   async validateAlias(@Param('alias') alias: string, @Param('id') id: string) {
-    console.log('alias', alias);
-    console.log('id', id);
     return await this.eventsService.validAlias(alias, id);
   }
 
@@ -37,14 +45,6 @@ export class EventsController {
     return {
       ...event,
       date: Date.format(event.date),
-    };
-  }
-
-  private deserializeEvent(event: any): Event {
-    if (!event) return null;
-    return {
-      ...event,
-      date: Date.parse(event.date),
     };
   }
 }
