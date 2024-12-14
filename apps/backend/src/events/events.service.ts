@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { complementEvent, Date, type Event, type Guest } from 'core';
+import { HttpException, Injectable } from '@nestjs/common';
+import { complementEvent, Date, Event, Guest } from 'core';
 import { PrismaService } from 'src/database/prisma.service';
 
 @Injectable()
@@ -13,35 +13,45 @@ export class EventsService {
     });
   }
 
-  async getById(id: string) {
+  async getById(id: string, complete: boolean = false) {
     const event = await this.prismaService.event.findFirst({
       where: {
         id: id,
       },
       include: {
-        guests: true,
+        guests: complete,
       },
     });
 
     if (!event) {
-      throw new Error('Event not found');
+      throw new HttpException('Event not found', 400);
     }
 
     return event;
   }
 
-  async getByAlias(alias: string) {
-    const event = await this.prismaService.event.findFirst({
+  async getByAlias(alias: string, complete: boolean = false) {
+    const event = await this.prismaService.event.findUnique({
+      select: {
+        id: true,
+        alias: true,
+        name: true,
+        description: true,
+        expectedAudience: complete,
+        image: true,
+        imageBackground: true,
+        local: true,
+        date: true,
+        password: complete,
+        guests: complete,
+      },
       where: {
         alias: alias,
-      },
-      include: {
-        guests: true,
       },
     });
 
     if (!event) {
-      throw new Error('Event not found');
+      throw new HttpException('Event not found', 400);
     }
 
     return event;
@@ -70,8 +80,12 @@ export class EventsService {
       },
     });
 
+    if (!event) {
+      throw new HttpException('Event not found', 400);
+    }
+
     if (event.password !== password) {
-      throw new Error('Invalid password');
+      throw new HttpException('Invalid password', 400);
     }
 
     return event;
@@ -85,7 +99,7 @@ export class EventsService {
     });
 
     if (!event) {
-      throw new Error('Event not found');
+      throw new HttpException('Event not found', 400);
     }
 
     const existingGuest = await this.prismaService.guest.findFirst({
@@ -96,26 +110,23 @@ export class EventsService {
     });
 
     if (existingGuest) {
-      throw new Error('Guest already exists');
+      throw new HttpException('Guest already exists', 400);
     }
 
     return await this.prismaService.guest.create({
       data: {
         ...guest,
+        qtyCompanions: +(guest.qtyCompanions ?? 0),
         eventId: event.id,
       },
     });
   }
 
   async createEvent(event: Event) {
-    const existingEvent = await this.prismaService.event.findFirst({
-      where: {
-        alias: event.alias,
-      },
-    });
+    const existingEvent = await this.getByAlias(event.alias, true);
 
     if (existingEvent && existingEvent.id !== event.id) {
-      throw new Error('The event with this alias already exists');
+      throw new HttpException('The event with this alias already exists', 400);
     }
 
     const eventComplete = complementEvent(this.deserializeEvent(event));

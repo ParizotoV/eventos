@@ -15,7 +15,7 @@ CREATE TABLE "events" (
 );
 
 -- CreateTable
-CREATE TABLE "Guest" (
+CREATE TABLE "guests" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
@@ -24,8 +24,11 @@ CREATE TABLE "Guest" (
     "qtyCompanions" INTEGER NOT NULL,
     "eventId" TEXT,
 
-    CONSTRAINT "Guest_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "guests_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateIndex
+CREATE UNIQUE INDEX "events_alias_key" ON "events"("alias");
+
 -- AddForeignKey
-ALTER TABLE "Guest" ADD CONSTRAINT "Guest_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "events"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "guests" ADD CONSTRAINT "guests_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "events"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { Date, Event, Id, type Guest } from 'core';
 import { EventsService } from './events.service';
 
@@ -27,11 +27,18 @@ export class EventsController {
   }
 
   @Get(':id')
-  async getEvent(@Param('id') id: string) {
+  async getEvent(
+    @Param('id') id: string,
+    @Query('complete') complete: boolean,
+  ) {
     if (Id.valid(id)) {
-      return this.serializeEvent(await this.eventsService.getById(id));
+      return this.serializeEvent(
+        await this.eventsService.getById(id, complete),
+      );
     } else {
-      return this.serializeEvent(await this.eventsService.getByAlias(id));
+      return this.serializeEvent(
+        await this.eventsService.getByAlias(id, complete),
+      );
     }
   }
 
